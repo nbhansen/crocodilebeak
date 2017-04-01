@@ -1,3 +1,30 @@
+// This #include statement was automatically added by the Particle IDE.
+#include "application.h"
+#include "HttpClient/HttpClient.h"
+
+/**
+* Declaring the variables.
+*/
+unsigned int nextTime = 0;    // Next time to contact the server
+HttpClient http;
+
+// Headers currently need to be set at init, useful for API keys etc.
+http_header_t headers[] = {
+    //  { "Content-Type", "application/json" },
+    //  { "Accept" , "application/json" },
+    { "Accept" , "*/*"},
+    { NULL, NULL } // NOTE: Always terminate headers will NULL
+};
+
+
+const String host = "207.154.197.158";
+const String path = "/product";
+const int port = 80;
+
+http_request_t request;
+http_response_t response;
+
+
 
 #define enablePin  D7   // Connects to the RFID's ENABLE pin
 #define rxPin      RX  // Serial input (connects to the RFID's SOUT pin)
@@ -8,6 +35,7 @@
 #define RFID_START  0x0A  // RFID Reader Start and Stop bytes
 #define RFID_STOP   0x0D
 int motorPin = D1;
+bool badproduct = false;
 
 // Wait for a response from the RFID Reader
   // See Arduino readBytesUntil() as an alternative solution to read data from the reader
@@ -18,30 +46,23 @@ int motorPin = D1;
 void setup()  // Set up code called once on start-up
 {
   
-  
   // define pin modes
-  pinMode(enablePin, OUTPUT);
-//  pinMode(rxPin, INPUT);
-
-  digitalWrite(enablePin, HIGH);  // disable RFID Reader
-  
+pinMode(enablePin, OUTPUT);
+digitalWrite(enablePin, HIGH);  // disable RFID Reader
   
   // set the baud rate for the SoftwareSerial port
   Serial.begin(2400);
-   Serial1.begin(2400);
+  Serial1.begin(2400);
 
 //set pinmode for the motor
 pinMode(motorPin, OUTPUT);
-
-
 digitalWrite(enablePin, LOW);   // enable the RFID Reader
  
- rfidData[0] = 0;         // Clear the buffer   
+
+ rfidData[0] = 0;         // Clear the buffer
 }
   
-  
-  
-  
+
 void loop()  // Main code, to run repeatedly
 {
   /* 
@@ -58,8 +79,6 @@ void loop()  // Main code, to run repeatedly
 if (Serial1.available() > 0) // If there are any bytes available to read, then the RFID Reader has probably seen a valid tag
     {
     
-  
-    
       rfidData[offset] = Serial1.read();  // Get the byte and store it in our buffer
       if (rfidData[offset] == RFID_START)    // If we receive the start byte from the RFID Reader, then get ready to receive the tag's unique ID
       {
@@ -73,30 +92,25 @@ if (Serial1.available() > 0) // If there are any bytes available to read, then t
           
       offset++;  // Increment offset into array
       if (offset >= BUFSIZE) {offset = 0;} // If the incoming data string is longer than our buffer, wrap around to avoid going out-of-bounds
-GodNoDontEatThis();
-Serial.println(rfidData);       // The rfidData string should now contain the tag's unique ID with a null termination, so display it on the Serial Monitor
+
+//Serial.println(rfidData);       // The rfidData string should now contain the tag's unique ID with a null termination, so display it on the Serial Monitor
     }
+
+
+bool test_food = check_rfid("lol"); // see below - because we dont use the rfid-string for anything yet we just pass a bogus string
+  if (test_food == false) {
+    iWouldLoveThisFood();
+    }
+
 }
-
-
-  
-//string er det den samme && er den lang nok
-
-
-//hvor mange ms er der gået? milliS() -  unsigned long //ellers crasher det
-
-
-
-//GodNoDontEatThis();
-// iWouldLoveThisFood(); //only meant to be used if we decide to do positive nudging
 
 //tries to send a sensual OH YES PLEASE signal to the servo, clearly distinguishable from the two short hard bursts used by GodNoDontEatThis()
 
+
 void iWouldLoveThisFood(){
     digitalWrite(motorPin, HIGH);
-    delay(1500); 
+    delay(1000); 
     digitalWrite(motorPin, LOW);
-    delay(3000);
 }
 
 
@@ -114,9 +128,25 @@ void GodNoDontEatThis(){
 }
 
 
-   /*      //disgusting debugging using the servo
-    digitalWrite(motorPin, HIGH);
-    delay(1500); 
-    digitalWrite(motorPin, LOW);
-    delay(1500); 
-  */
+
+
+bool check_rfid(String rfid_string) { //we should pass the rfid-id here, but because this doesnt work yet, we just pass some bogus data. 
+
+    // Request path and body can be set at runtime or at setup.
+    request.hostname = host;
+    request.port = port;
+    request.path = path+"/"+rfid_string;
+
+    // The library also supports sending a body with your request:
+    //request.body = "{\"key\":\"value\"}";
+
+    // Get request
+    http.get(request, response, headers);
+
+    String body = response.body;
+    String strippedBody = body.replace("\"", "");
+    return strippedBody.startsWith("true");
+}
+
+
+
