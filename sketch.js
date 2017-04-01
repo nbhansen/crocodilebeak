@@ -13,6 +13,7 @@ function setup() {
 	stroke4 = 0;
 	stroke5 = 0;
 
+	//box coordinates
 	boxX = 50;
 
 	box1Y = 50;
@@ -22,7 +23,7 @@ function setup() {
 	box5Y = 1250;
 
 	url = "http://207.154.197.158/preferences";
-
+	//backend reset
 	preferences = [
 		{"name": "Dairy", "selected": false},
 		{"name": "Gluten", "selected": false},
@@ -35,11 +36,13 @@ function setup() {
 }
 
 function draw() {
+	//box visuals
 	background(255);
 	stroke(0);
 	strokeWeight(1);
 	fill(255);
 
+	//text formatting
 	textSize(150);
 	textStyle(BOLD);
 	textAlign(LEFT,CENTER);
@@ -59,6 +62,7 @@ function draw() {
 	//box 5
 	rect(boxX,box5Y,boxSize,boxSize,boxRounding);
 
+	//render text, 80 er differencen mellem box størrelsen og tekst størrelsen
 	fill(0);
 	text("DAIRY",225,box1Y+80); 
 	text("GLUTEN",225,box2Y+80); 
@@ -66,24 +70,25 @@ function draw() {
 	text("NUTS",225,box4Y+80);
 	text("EGG",225,box5Y+80);
 
+	//red
 	stroke(255,0,0);
-
+	//cross 1
 	strokeWeight(stroke1);
 	line(boxX, box1Y, boxX+boxSize, box1Y+boxSize);
 	line(boxX, box1Y+boxSize, boxX+boxSize, box1Y);
-
+	//cross 2
 	strokeWeight(stroke2);
 	line(boxX, box2Y, boxX+boxSize, box2Y+boxSize);
 	line(boxX, box2Y+boxSize, boxX+boxSize, box2Y);
-
+	//cross 3
 	strokeWeight(stroke3);
 	line(boxX, box3Y, boxX+boxSize, box3Y+boxSize);
 	line(boxX, box3Y+boxSize, boxX+boxSize, box3Y);	
-
+	//cross 4
 	strokeWeight(stroke4);
 	line(boxX, box4Y, boxX+boxSize, box4Y+boxSize);
 	line(boxX, box4Y+boxSize, boxX+boxSize, box4Y);
-
+	//cross 5
 	strokeWeight(stroke5);
 	line(boxX, box5Y, boxX+boxSize, box5Y+boxSize);
 	line(boxX, box5Y+boxSize, boxX+boxSize, box5Y);
@@ -91,16 +96,20 @@ function draw() {
 
   function touchEnded() {
   	//box1
+  	//if touch within box 
   	if (mouseX > boxX && mouseX < boxX+boxSize && mouseY > box1Y && mouseY < box1Y+boxSize) {
   		data = null;
+  		//if not crossed, cross it, set true
   		if (stroke1 == 0) {
   			stroke1 = 10;
   			data = [{"name": "Dairy", "selected": true}];
   			
   		} else {
+  			//if crossed, remove cross, set false
   			stroke1 = 0;
   			data = [{"name": "Dairy", "selected": false}];
   		}
+  		//send data
   		httpPost(url, "json", data);
   	}
   	//box2
