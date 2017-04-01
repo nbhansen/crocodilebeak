@@ -1,0 +1,30 @@
+swagger: '2.0'
+
+# This is the document metadata
+info:
+  version: "0.0.1"
+  title: Crocodile Beak Hackathon
+
+# Paths
+paths:
+  /product/{rfid}:
+      get:
+        operationId: "endpoints.get_rfid"
+        parameters:
+          - in: path
+            required: true
+            name: rfid
+            type: "string"
+        responses:
+          200:
+            description: "A list of positions and times"
+          404:
+            description: "No positions found."
+  
+definitions:
+  ProductRecommendation:
+    type: "object"
+    properties:
+      isGood:
+        type: "boolean"
+        description: "Is the product corosponding to the RFID tag preferred?."
