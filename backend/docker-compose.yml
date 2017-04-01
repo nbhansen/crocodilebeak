@@ -20,6 +20,12 @@ services:
             - web
         links:
             - web:web
+    
+    static:
+        restart: always
+        build: ./static
+        ports:
+            - "8080:8000"
 
 volumes:
   db-data:
