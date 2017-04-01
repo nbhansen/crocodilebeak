@@ -1,6 +1,6 @@
 
 function setup() {
-	createCanvas(640, 520);
+	createCanvas(1000, 2500);
 
 	//define checkbox size
 	boxSize = 50;
