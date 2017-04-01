@@ -1,4 +1,3 @@
-
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 
@@ -31,7 +30,7 @@ function setup() {
 		{"name": "Nuts", "selected": false},
 		{"name": "Egg", "selected": false},
 	];
-	httpPost(url, "json", preferences);
+	httpPost(url, "json", preferences, function(returnData) {console.log(returnData);}, function(error) {console.log(error)});
 
 }
 
