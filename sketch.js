@@ -12,6 +12,14 @@ function setup() {
 	stroke3 = 0;
 	stroke4 = 0;
 	stroke5 = 0;
+
+	boxX = 50;
+
+	box1Y = 50;
+	box2Y = 250;
+	box3Y = 450;
+	box4Y = 650;
+	box5Y = 850;
 }
 
 function draw() {
@@ -25,87 +33,87 @@ function draw() {
 	textAlign(LEFT,CENTER);
 
 	//box 1
-	rect(50,50,boxSize,boxSize,boxRounding);
-	/*
+	rect(boxX,box1Y,boxSize,boxSize,boxRounding);
+	
 	//box 2
-	rect(50,150,boxSize,boxSize,boxRounding);
+	rect(boxX,box2Y,boxSize,boxSize,boxRounding);
 
 	//box 3
-	rect(50,250,boxSize,boxSize,boxRounding);
+	rect(boxX,box3Y,boxSize,boxSize,boxRounding);
 
 	//box 4
-	rect(50,350,boxSize,boxSize,boxRounding);
+	rect(boxX,box4Y,boxSize,boxSize,boxRounding);
 
 	//box 5
-	rect(50,450,boxSize,boxSize,boxRounding);
-*/
+	rect(boxX,box5Y,boxSize,boxSize,boxRounding);
+
 	fill(0);
-	text("DAIRY",225,130); /*
-	text("GLUTEN",125,175);
-	text("SOY",125,275);
-	text("NUTS",125,375);
-	text("EGG",125,475);
-*/
+	text("DAIRY",225,130); 
+	text("GLUTEN",225,330); 
+	text("SOY",225,530);
+	text("NUTS",225,730);
+	text("EGG",225,930);
+
 	stroke(255,0,0);
 
 	strokeWeight(stroke1);
-	line(50,50,100,100);
-	line(50,100,100,50);
-/*
+	line(boxX, box1Y, boxX+boxSize, box1Y+boxSize);
+	line(boxX, box1Y+boxSize, boxX+boxSize, box1Y);
+
 	strokeWeight(stroke2);
-	line(50,150,100,200);
-	line(50,200,100,150);
+	line(boxX, box2Y, boxX+boxSize, box2Y+boxSize);
+	line(boxX, box2Y+boxSize, boxX+boxSize, box2Y);
 
 	strokeWeight(stroke3);
-	line(50,250,100,300);
-	line(50,300,100,250);	
+	line(boxX, box3Y, boxX+boxSize, box3Y+boxSize);
+	line(boxX, box3Y+boxSize, boxX+boxSize, box3Y);	
 
 	strokeWeight(stroke4);
-	line(50,350,100,400);
-	line(50,400,100,350);
+	line(boxX, box4Y, boxX+boxSize, box4Y+boxSize);
+	line(boxX, box4Y+boxSize, boxX+boxSize, box4Y);
 
 	strokeWeight(stroke5);
-	line(50,450,100,500);
-	line(50,500,100,450); */
+	line(boxX, box5Y, boxX+boxSize, box5Y+boxSize);
+	line(boxX, box5Y+boxSize, boxX+boxSize, box5Y);
   }
 
   function touchEnded() {
   	//box1
-  	if (mouseX > 50 && mouseX < 100 && mouseY > 50 && mouseY < 100) {
+  	if (mouseX > boxX && mouseX < boxX+boxSize && mouseY > box1Y && mouseY < box1Y+boxSize) {
   		if (stroke1 == 0) {
-  			stroke1 = 5;
+  			stroke1 = 10;
   		} else {
   			stroke1 = 0;
   		}
   	}
   	//box2
-  	if (mouseX > 50 && mouseX < 100 && mouseY > 150 && mouseY < 200) {
+  	if (mouseX > boxX && mouseX < boxX+boxSize && mouseY > box2Y && mouseY < box2Y+boxSize) {
   		if (stroke2 == 0) {
-  			stroke2 = 5;
+  			stroke2 = 10;
   		} else {
   			stroke2 = 0;
   		}
   	}
   	//box3
-  	if (mouseX > 50 && mouseX < 100 && mouseY > 250 && mouseY < 300) {
+  	if (mouseX > boxX && mouseX < boxX+boxSize && mouseY > box3Y && mouseY < box3Y+boxSize) {
   		if (stroke3 == 0) {
-  			stroke3 = 5;
+  			stroke3 = 10;
   		} else {
   			stroke3 = 0;
   		}
   	}
   	//box4
-  	if (mouseX > 50 && mouseX < 100 && mouseY > 350 && mouseY < 400) {
+  	if (mouseX > boxX && mouseX < boxX+boxSize && mouseY > box4Y && mouseY < box4Y+boxSize) {
   		if (stroke4 == 0) {
-  			stroke4 = 5;
+  			stroke4 = 10;
   		} else {
   			stroke4 = 0;
   		}
   	}
   	//box5
-  	if (mouseX > 50 && mouseX < 100 && mouseY > 450 && mouseY < 500) {
+  	if (mouseX > boxX && mouseX < boxX+boxSize && mouseY > box5Y && mouseY < box5Y+boxSize) {
   		if (stroke5 == 0) {
-  			stroke5 = 5;
+  			stroke5 = 10;
   		} else {
   			stroke5 = 0;
   		}
