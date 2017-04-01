@@ -20,6 +20,18 @@ function setup() {
 	box3Y = 650;
 	box4Y = 950;
 	box5Y = 1250;
+
+	url = "http://207.154.197.158/preferences";
+
+	preferences = [
+		{"name": "Dairy", "selected": false},
+		{"name": "Gluten", "selected": false},
+		{"name": "Soy", "selected": false},
+		{"name": "Nuts", "selected": false},
+		{"name": "Egg", "selected": false},
+	];
+	httpPost(url, "json", preferences);
+
 }
 
 function draw() {
@@ -80,42 +92,63 @@ function draw() {
   function touchEnded() {
   	//box1
   	if (mouseX > boxX && mouseX < boxX+boxSize && mouseY > box1Y && mouseY < box1Y+boxSize) {
+  		data = null;
   		if (stroke1 == 0) {
   			stroke1 = 10;
+  			data = [{"name": "Dairy", "selected": true}];
+  			
   		} else {
   			stroke1 = 0;
+  			data = [{"name": "Dairy", "selected": false}];
   		}
+  		httpPost(url, "json", data);
   	}
   	//box2
   	if (mouseX > boxX && mouseX < boxX+boxSize && mouseY > box2Y && mouseY < box2Y+boxSize) {
+  		data = null;
   		if (stroke2 == 0) {
   			stroke2 = 10;
+  			data = [{"name": "Gluten", "selected": true}];
   		} else {
   			stroke2 = 0;
+  			data = [{"name": "Gluten", "selected": false}];
   		}
+  		httpPost(url, "json", data);
   	}
   	//box3
   	if (mouseX > boxX && mouseX < boxX+boxSize && mouseY > box3Y && mouseY < box3Y+boxSize) {
+  		data = null;
   		if (stroke3 == 0) {
   			stroke3 = 10;
+  			data = [{"name": "Soy", "selected": true}];
   		} else {
   			stroke3 = 0;
+  			data = [{"name": "Soy", "selected": false}];
   		}
+  		httpPost(url, "json", data);
   	}
   	//box4
   	if (mouseX > boxX && mouseX < boxX+boxSize && mouseY > box4Y && mouseY < box4Y+boxSize) {
+  		data = null;
   		if (stroke4 == 0) {
   			stroke4 = 10;
+  			data = [{"name": "Nuts", "selected": true}];
   		} else {
   			stroke4 = 0;
+  			data = [{"name": "Nuts", "selected": false}];
   		}
+  		httpPost(url, "json", data);
   	}
   	//box5
   	if (mouseX > boxX && mouseX < boxX+boxSize && mouseY > box5Y && mouseY < box5Y+boxSize) {
+  		data = null;
   		if (stroke5 == 0) {
   			stroke5 = 10;
+  			data = [{"name": "Egg", "selected": true}];
   		} else {
   			stroke5 = 0;
+  			data = [{"name": "Egg", "selected": false}];
   		}
+  		httpPost(url, "json", data);
   	}
   }
