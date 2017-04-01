@@ -19,7 +19,7 @@ function setup() {
 	box2Y = 350;
 	box3Y = 650;
 	box4Y = 950;
-	box5Y = 1050;
+	box5Y = 1250;
 }
 
 function draw() {
