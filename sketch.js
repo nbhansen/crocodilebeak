@@ -1,9 +1,9 @@
 
 function setup() {
-	createCanvas(640, 520);
+	createCanvas(windowWidth, windowHeight);
 
 	//define checkbox size
-	boxSize = 50;
+	boxSize = 150;
 	boxRounding = 10;
 
 	//define cross stroke
@@ -20,13 +20,13 @@ function draw() {
 	strokeWeight(1);
 	fill(255);
 
-	textSize(30);
+	textSize(150);
 	textStyle(BOLD);
 	textAlign(LEFT,CENTER);
 
 	//box 1
 	rect(50,50,boxSize,boxSize,boxRounding);
-	
+	/*
 	//box 2
 	rect(50,150,boxSize,boxSize,boxRounding);
 
@@ -38,20 +38,20 @@ function draw() {
 
 	//box 5
 	rect(50,450,boxSize,boxSize,boxRounding);
-
+*/
 	fill(0);
-	text("DAIRY",125,75);
+	text("DAIRY",225,130); /*
 	text("GLUTEN",125,175);
 	text("SOY",125,275);
 	text("NUTS",125,375);
 	text("EGG",125,475);
-
+*/
 	stroke(255,0,0);
 
 	strokeWeight(stroke1);
 	line(50,50,100,100);
 	line(50,100,100,50);
-
+/*
 	strokeWeight(stroke2);
 	line(50,150,100,200);
 	line(50,200,100,150);
@@ -66,7 +66,7 @@ function draw() {
 
 	strokeWeight(stroke5);
 	line(50,450,100,500);
-	line(50,500,100,450);
+	line(50,500,100,450); */
   }
 
   function touchEnded() {

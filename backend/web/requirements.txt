@@ -1,0 +1,5 @@
+connexion>=1.0.31
+tornado>=4.4.2
+tinydb>=3.2.1
+Werkzeug==0.10.4
+gunicorn==19.3.0

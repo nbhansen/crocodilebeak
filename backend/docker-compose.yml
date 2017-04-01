@@ -1,0 +1,25 @@
+version: '2'
+services:
+  
+    web:
+        restart: always
+        build: ./web
+        expose:
+            - "8000"
+        volumes:
+            - db-data:/data/db
+
+    nginx:
+        restart: always
+        build: ./nginx/
+        ports:
+            - "80:80"
+        volumes:
+            - /www/static
+        volumes_from:
+            - web
+        links:
+            - web:web
+
+volumes:
+  db-data:
