@@ -16,10 +16,10 @@ function setup() {
 	boxX = 50;
 
 	box1Y = 50;
-	box2Y = 250;
-	box3Y = 450;
-	box4Y = 650;
-	box5Y = 850;
+	box2Y = 350;
+	box3Y = 650;
+	box4Y = 950;
+	box5Y = 1050;
 }
 
 function draw() {
@@ -48,11 +48,11 @@ function draw() {
 	rect(boxX,box5Y,boxSize,boxSize,boxRounding);
 
 	fill(0);
-	text("DAIRY",225,130); 
-	text("GLUTEN",225,330); 
-	text("SOY",225,530);
-	text("NUTS",225,730);
-	text("EGG",225,930);
+	text("DAIRY",225,box1Y+80); 
+	text("GLUTEN",225,box2Y+80); 
+	text("SOY",225,box3Y+80);
+	text("NUTS",225,box4Y+80);
+	text("EGG",225,box5Y+80);
 
 	stroke(255,0,0);
 
