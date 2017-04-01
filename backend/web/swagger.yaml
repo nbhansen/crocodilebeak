@@ -33,7 +33,21 @@ paths:
       responses:
         200:
           description: "Successfully saved RFID tag and bar code."
-
+  
+  /preferences/:
+    post:
+      operationId: "endpoints.post_preference"
+      parameters:
+      - in: body
+        required: true
+        name: preferences
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/Preference"
+      responses:
+        200:
+          description: "Successfully saved RFID tag and bar code."
   
 definitions:
   Product:
@@ -45,3 +59,13 @@ definitions:
       barcode:
         type: "string"
         description: "The bar code the product."
+  
+  Preference:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        description: "The name of the ingredient."
+      selected:
+        type: "boolean"
+        description: "'true' if selected for warning, 'fakse' if allowed."

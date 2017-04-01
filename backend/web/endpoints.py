@@ -2,7 +2,7 @@
 import logging
 import json
 
-from tinydb import TinyDB
+from tinydb import TinyDB, Query
 
 from connexion import NoContent
 
@@ -21,3 +21,16 @@ def post_product(**kwargs):
     db.insert(product)
     logger.info("Inserted rfid %s with barcode %s into db" % (product['rfid'], product['barcode']))
     return json.dumps(product), 200
+
+def post_preference(**kwargs):
+    preferences = kwargs['preferences']
+    for preference in preferences:
+        preferenceQuery = db.get(Query().name == preference['name'])
+        if preferenceQuery:
+            db.update({'selected': preference['selected']}, eids=[preferenceQuery.eid])
+        else:
+            db.insert(preference)
+        
+        preference_object = db.get(Query().name == preference['name'])
+        logger.info("Inserted/Updated %s" % preference_object)
+    return json.dumps(preferences), 200
