@@ -3,7 +3,7 @@ function setup() {
 	createCanvas(windowWidth, windowHeight);
 
 	//define checkbox size
-	boxSize = 50;
+	boxSize = 150;
 	boxRounding = 10;
 
 	//define cross stroke
@@ -20,7 +20,7 @@ function draw() {
 	strokeWeight(1);
 	fill(255);
 
-	textSize(60);
+	textSize(150);
 	textStyle(BOLD);
 	textAlign(LEFT,CENTER);
 
@@ -40,7 +40,7 @@ function draw() {
 	rect(50,450,boxSize,boxSize,boxRounding);
 */
 	fill(0);
-	text("DAIRY",125,75); /*
+	text("DAIRY",225,130); /*
 	text("GLUTEN",125,175);
 	text("SOY",125,275);
 	text("NUTS",125,375);
