@@ -4,16 +4,20 @@ services:
     web:
         restart: always
         build: ./web
-        ports:
-            - "80:8000"
+        expose:
+            - "8000"
         volumes:
             - db-data:/data/db
-
-    static:
+    nginx:
         restart: always
-        build: ./static
+        build: ./nginx/
         ports:
-            - "8000:8000"
-
+            - "80:80"
+        volumes:
+            - /www/static
+        volumes_from:
+            - web
+        links:
+            - web:web
 volumes:
   db-data:
