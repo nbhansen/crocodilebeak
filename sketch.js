@@ -63,12 +63,18 @@ function draw() {
 
 	//render text, 80 er differencen mellem box størrelsen og tekst størrelsen
 	fill(0);
+	/*
 	text("DAIRY",225,box1Y+80); 
 	text("GLUTEN",225,box2Y+80); 
 	text("SOY",225,box3Y+80);
 	text("NUTS",225,box4Y+80);
 	text("EGG",225,box5Y+80);
-
+*/
+	text("VEGETARIAN",225,box1Y+80); 
+	text("VEGAN",225,box2Y+80); 
+	text("PESCATARIAN",225,box3Y+80);
+	text("POLLOTARIAN",225,box4Y+80);
+	text("HALAL",225,box5Y+80);
 	//red
 	stroke(255,0,0);
 	//cross 1
@@ -160,3 +166,4 @@ function draw() {
   		httpPost(url, "json", data);
   	}
   }
+
